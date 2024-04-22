@@ -49,17 +49,17 @@ public class EmployeeManagementApp {
 			scanner.nextLine();
 
 			switch (choice) {
-			case 1:
-				addEmployee();
-				break;
-			case 2:
-				removeEmployee();
-				break;
-			case 0:
-				System.out.println("Thoat chuong trinh.");
-				return;
-			default:
-				System.out.println("Lua chon khong hop le.");
+				case 1:
+					addEmployee();
+					break;
+				case 2:
+					removeEmployee();
+					break;
+				case 0:
+					System.out.println("Thoat chuong trinh.");
+					return;
+				default:
+					System.out.println("Lua chon khong hop le.");
 			}
 		}
 	}
@@ -78,24 +78,38 @@ public class EmployeeManagementApp {
 	}
 
 	static void addEmployee() {
-		System.out.println("Nhap id: ");
+		System.out.print("Nhap id: ");
 		int id = scanner.nextInt();
 		scanner.nextLine();
 
-		System.out.println("Nhap ten nhan vien: ");
+		// Kiểm tra id đã tồn tại hay chưa
+		boolean isDuplicate = false;
+		for (Employee employee : employees) {
+			if (employee.id == id) {
+				isDuplicate = true;
+				break;
+			}
+		}
+
+		if (isDuplicate) {
+			System.out.println("Id da ton tai, vui long nhap id khac.");
+			return;
+		}
+
+		System.out.print("Nhap ten nhan vien: ");
 		String name = scanner.nextLine();
 
-		System.out.println("Nhap tuoi nhan vien: ");
+		System.out.print("Nhap tuoi nhan vien: ");
 		int age = scanner.nextInt();
 		scanner.nextLine();
 
-		System.out.println("Nhap phong ban: ");
+		System.out.print("Nhap phong ban: ");
 		String department = scanner.nextLine();
 
-		System.out.println("Nhap ma nhan vien: ");
+		System.out.print("Nhap ma nhan vien: ");
 		String code = scanner.nextLine();
 
-		System.out.println("Nhap muc luong: ");
+		System.out.print("Nhap muc luong: ");
 		double salaryRate = scanner.nextDouble();
 
 		Employee newEmployee = new Employee(id, name, age, department, code, salaryRate);
