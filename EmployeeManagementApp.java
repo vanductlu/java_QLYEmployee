@@ -18,6 +18,11 @@ class Employee {
 		this.code = code;
 		this.salaryRate = salaryRate;
 	}
+
+	public String toString() {
+		return String.format("| %-2d | %-13s | %-4d| %-11s | %-6s | %-12.2f |%n", id, name, age, department, code,
+				salaryRate);
+	}
 }
 
 public class EmployeeManagementApp {
@@ -25,17 +30,24 @@ public class EmployeeManagementApp {
 	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		employees.add(new Employee(1, "Duc", 21, "63HT2", "215116", 7000.0));
-		employees.add(new Employee(2, "Hanh", 21, "63HT2", "215116", 7000.0));
-		employees.add(new Employee(3, "Duy", 21, "63HT2", "215116", 7000.0));
-		employees.add(new Employee(4, "Quan", 21, "63HT2", "215116", 7000.0));
-		employees.add(new Employee(5, "Khanh", 21, "63HT2", "215116", 7000.0));
-		employees.add(new Employee(6, "Minh", 21, "63HT2", "215116", 7000.0));
-		employees.add(new Employee(7, "Kien", 21, "63HT2", "215116", 7000.0));
-		employees.add(new Employee(8, "Tu", 21, "63HT2", "215116", 7000.0));
-		employees.add(new Employee(9, "Son", 21, "63HT2", "215116", 7000.0));
-		employees.add(new Employee(10, "Van", 21, "63HT2", "215116", 7000.0));
+		String[][] employeeInfo = {
+				{ "Duc", "21", "63HT2", "215116", "7000.0" },
+				{ "Hanh", "21", "63HT2", "215116", "7000.0" },
+				{ "Duy", "21", "63HT2", "215116", "7000.0" },
+				{ "Quan", "21", "63HT2", "215116", "7000.0" },
+				{ "Khanh", "21", "63HT2", "215116", "7000.0" },
+				{ "Minh", "21", "63HT2", "215116", "6000.0" },
+				{ "Kien", "21", "63HT2", "215116", "7000.0" },
+				{ "Tu", "21", "63HT2", "215116", "7000.0" },
+				{ "Son", "21", "63HT2", "215116", "7000.0" },
+				{ "Van", "21", "63HT2", "215116", "7000.0" }
+		};
 
+		for (int i = 0; i < employeeInfo.length; i++) {
+			String[] info = employeeInfo[i];
+			employees.add(new Employee(i + 1, info[0], Integer.parseInt(info[1]), info[2], info[3],
+					Double.parseDouble(info[4])));
+		}
 		displayEmployees();
 
 		while (true)
@@ -70,8 +82,7 @@ public class EmployeeManagementApp {
 		System.out.println("+----+---------------+-----+-------------+--------+--------------+");
 
 		for (Employee employee : employees) {
-			System.out.printf("| %-2d | %-13s | %-4d| %-11s | %-6s | %-12.2f |%n", employee.id, employee.name,
-					employee.age, employee.department, employee.code, employee.salaryRate);
+			System.out.printf(employee.toString());
 		}
 
 		System.out.println("+----+---------------+-----+-------------+--------+--------------+");
